@@ -62,11 +62,11 @@ augroup vimrcEx
   autocmd FileType ruby compiler ruby
 
   " vim-ruby completions
-  autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
-  " autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
-  " autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
-  " autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
+  autocmd FileType ruby,eruby           set omnifunc=rubycomplete#Complete
+  autocmd BufNewFile,BufRead *.jbuilder set filetype=ruby
+  autocmd BufNewFile,BufRead *.rabl     set filetype=ruby
 
+  " Vim idention
   autocmd FileType vim setlocal ts=2 sts=2 sw=2
 augroup END
 
@@ -128,7 +128,7 @@ call unite#custom#profile('default', 'context', {
   \ })
 
 call unite#custom_source(
-      \'file_rec/async,file_mru,file,buffer,grep', 'ignore_pattern', 
+      \'file_rec/async,file_mru,file,buffer,grep', 'ignore_pattern',
       \join(['\.git/'], '\|'))
 
 call unite#custom#source(
@@ -254,10 +254,9 @@ inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 inoremap <expr><C-y>  neocomplete#close_popup()
 inoremap <expr><C-e>  neocomplete#cancel_popup()
 
-" Dash settings 
-"
-let g:dash_map = {
-      \'ruby': ['ruby', 'rails']
-      \}
+" reselect blocks after indenting/dedenting
+vnoremap < <gv
+vnoremap > >gv
 
-:nmap <silent> <leader>d <Plug>DashSearch
+" ruby path if you are using RVM
+let g:ruby_path = system('rvm current')

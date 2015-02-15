@@ -267,3 +267,26 @@ endif
 if &term == "screen" || &term == "xterm" || &term == "xterm-256color"
   set title
 endif
+
+
+" Indent if we're at the beginning of a line. Else, do completion.
+function! InsertTabWrapper()
+  let col = col('.') - 1
+  if !col || getline('.')[col - 1] !~ '\k'
+    return "\<tab>"
+  else
+    return "\<c-p>"
+  endif
+endfunction
+inoremap <expr> <tab> InsertTabWrapper()
+inoremap <s-tab> <c-n>
+
+" Setup vroom
+let g:vroom_use_colors = 1
+let g:vroom_use_vimux = 1
+let g:vroom_map_keys = 0
+let g:vroom_use_dispatch = 1
+
+map <unique> <Leader>t :VroomRunTestFile<CR>
+map <unique> <Leader>T :VroomRunNearestTest<CR>
+map <unique> <Leader>l :VroomRunLastTest<CR>

@@ -36,9 +36,9 @@ augroup vimrcEx
   " Don't do it for commit messages, when the position is invalid, or when
   " inside an event handler (happens when dropping a file on gvim).
   autocmd BufReadPost *
-    \ if &ft != 'gitcommit' && line("'\"") > 0 && line("'\"") <= line("$") |
-    \   exe "normal g`\"" |
-    \ endif
+        \ if &ft != 'gitcommit' && line("'\"") > 0 && line("'\"") <= line("$") |
+        \   exe "normal g`\"" |
+        \ endif
 
   " Set syntax highlighting for specific file types
   autocmd BufRead,BufNewFile Appraisals set filetype=ruby
@@ -122,10 +122,10 @@ nnoremap <leader><leader> <c-^>
 
 " Unite
 call unite#custom#profile('default', 'context', {
-  \   'start_insert': 1,
-  \   'winheight': 10,
-  \   'direction': 'botright',
-  \ })
+      \   'start_insert': 1,
+      \   'winheight': 10,
+      \   'direction': 'botright',
+      \ })
 
 call unite#custom_source(
       \'file_rec/async,file_mru,file,buffer,grep', 'ignore_pattern',
@@ -221,14 +221,12 @@ let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 
 " Define dictionary.
 let g:neocomplete#sources#dictionary#dictionaries = {
-    \ 'default' : '',
-    \ 'vimshell' : $HOME.'/.vimshell_hist',
-    \ 'scheme' : $HOME.'/.gosh_completions'
-        \ }
+      \ 'default' : '',
+      \ }
 
 " Define keyword.
 if !exists('g:neocomplete#keyword_patterns')
-    let g:neocomplete#keyword_patterns = {}
+  let g:neocomplete#keyword_patterns = {}
 endif
 let g:neocomplete#keyword_patterns['default'] = '\h\w*'
 " Search from neocomplete, omni candidates, vim keywords.
@@ -260,3 +258,12 @@ vnoremap > >gv
 
 " ruby path if you are using RVM
 let g:ruby_path = system('rvm current')
+
+" set terminal title
+if &term == "screen"
+  set t_ts=^[k
+  set t_fs=^[\
+endif
+if &term == "screen" || &term == "xterm" || &term == "xterm-256color"
+  set title
+endif

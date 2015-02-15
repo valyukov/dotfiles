@@ -1,5 +1,5 @@
 # ensure dotfiles bin directory is loaded first
-export PATH="$HOME/.bin:/usr/local/sbin:=/usr/local/bin::$PATH"
+export PATH="$HOME/.bin:/usr/local/sbin:$PATH"
 
 # Evaluate JAVA_HOME at start
 export JAVA_HOME=$(/usr/libexec/java_home)
@@ -8,9 +8,8 @@ export JAVA_HOME=$(/usr/libexec/java_home)
 export PATH="$PATH:$HOME/.rvm/bin"
 
 ## Default editor
-export VISUAL=mvim
+export VISUAL=vim
 export EDITOR=$VISUAL
-export GIT_EDITOR='/usr/local/bin/mvim -f --nomru -c "au VimLeave * !open -a Terminal"'
 
 # Setup Cask
 export PATH="$HOME/.cask/bin:$PATH"

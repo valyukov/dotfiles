@@ -65,6 +65,8 @@ augroup vimrcEx
   autocmd FileType ruby,eruby           set omnifunc=rubycomplete#Complete
   autocmd BufNewFile,BufRead *.jbuilder set filetype=ruby
   autocmd BufNewFile,BufRead *.rabl     set filetype=ruby
+  autocmd User Rails                    silent! Rlcd
+  autocmd User Rails                    silent! Rvm
 
   " Vim idention
   autocmd FileType vim setlocal ts=2 sts=2 sw=2
@@ -256,9 +258,6 @@ inoremap <expr><C-e>  neocomplete#cancel_popup()
 vnoremap < <gv
 vnoremap > >gv
 
-" ruby path if you are using RVM
-let g:ruby_path = system('rvm current')
-
 " set terminal title
 if &term == "screen"
   set t_ts=^[k
@@ -287,6 +286,9 @@ let g:vroom_use_vimux = 1
 let g:vroom_map_keys = 0
 let g:vroom_use_dispatch = 1
 
-map <unique> <Leader>t :VroomRunTestFile<CR>
-map <unique> <Leader>T :VroomRunNearestTest<CR>
-map <unique> <Leader>l :VroomRunLastTest<CR>
+map  <Leader>t :VroomRunTestFile<cr>
+map  <Leader>T :VroomRunNearestTest<cr>
+map  <Leader>l :VroomRunLastTest<cr>
+
+" close vimux pane
+map  <leader><bs> :VimuxCloseRunner<cr>

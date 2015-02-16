@@ -45,14 +45,14 @@ augroup vimrcEx
   autocmd BufRead,BufNewFile *.md set filetype=markdown
 
   " Enable spellchecking for Markdown
-  autocmd FileType markdown setlocal spell
+  autocmd FileType markdown setlocal spell spelllang=ru_ru,en_us
 
   " Automatically wrap at 80 characters for Markdown
   autocmd BufRead,BufNewFile *.md setlocal textwidth=80
 
   " Automatically wrap at 72 characters and spell check git commit messages
   autocmd FileType gitcommit setlocal textwidth=120
-  autocmd FileType gitcommit setlocal spell
+  autocmd FileType gitcommit setlocal spell spelllang=ru_ru,en_us
 
   " Allow stylesheets to autocomplete hyphenated words
   autocmd FileType css,scss,sass setlocal iskeyword+=-
@@ -70,6 +70,9 @@ augroup vimrcEx
 
   " Vim idention
   autocmd FileType vim setlocal ts=2 sts=2 sw=2
+
+  " Open help at vertical split
+  autocmd BufRead,BufEnter */doc/* wincmd L
 augroup END
 
 
@@ -105,22 +108,7 @@ set splitright
 " Text-Object
 runtime macros/matchit.vim
 
-" Exclude Javascript files in :Rtags via rails.vim due to warnings when
-" parsing
-let g:Tlist_Ctags_Cmd="ctags --exclude='*.js' --exclude='.git' "
-
-set tags+=./.gemtags,./.git/tags
-
-" nightmare
-noremap <Up> <NOP>
-noremap <Down> <NOP>
-noremap <Left> <NOP>
-noremap <Right> <NOP>
-noremap h <NOP>
-noremap l <NOP>
-
-" Switch between the last two files
-nnoremap <leader><leader> <c-^>
+set tags+=./.git/tags
 
 " Unite
 call unite#custom#profile('default', 'context', {
@@ -139,11 +127,8 @@ call unite#custom#source(
       \  'matcher_hide_current_file'])
 
 call unite#custom#source('grep', 'matchers', 'matcher_fuzzy')
-
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#filters#sorter_default#use(['sorter_rank'])
-
-
 call unite#custom#default_action('file', 'tabopen')
 
 if executable('ag')
@@ -174,12 +159,6 @@ function! s:unite_settings()
   nmap <buffer> <ESC> <Plug>(unite_exit)
 endfunction
 
-" Open help at vertical split
-augroup helpfiles
-  au!
-  au BufRead,BufEnter */doc/* wincmd L
-augroup END
-
 
 " Neosnippet
 " Plugin key-mappings.
@@ -195,9 +174,6 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
       \"\<Plug>(neosnippet_expand_or_jump)"
       \: "\<TAB>"
 
-" Enable snippets preview
-" let g:neosnippet#enable_preview = 1
-
 " Scope aliases
 let g:neosnippet#scope_aliases = {}
 let g:neosnippet#scope_aliases['ruby'] = 'ruby,ruby-rails,rails'
@@ -210,6 +186,7 @@ endif
 " Enable snipMate compatibility feature.
 let g:neosnippet#enable_snipmate_compatibility = 1
 
+
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
 " Use neocomplete.
@@ -220,6 +197,8 @@ let g:neocomplete#enable_smart_case = 1
 " Set minimum syntax keyword length.
 let g:neocomplete#sources#syntax#min_keyword_length = 3
 let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+let g:vroom_use_dispatch = 1
+let g:vroom_use_dispatch = 1
 
 " Define dictionary.
 let g:neocomplete#sources#dictionary#dictionaries = {
@@ -230,6 +209,7 @@ let g:neocomplete#sources#dictionary#dictionaries = {
 if !exists('g:neocomplete#keyword_patterns')
   let g:neocomplete#keyword_patterns = {}
 endif
+
 let g:neocomplete#keyword_patterns['default'] = '\h\w*'
 " Search from neocomplete, omni candidates, vim keywords.
 let g:neocomplete#fallback_mappings = ["\<C-x>\<C-o>", "\<C-x>\<C-n>"]
@@ -246,17 +226,31 @@ function! s:my_cr_function()
   " For no inserting <CR> key.
   "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
 endfunction
+
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+
 " <C-h>, <BS>: close popup and delete backword char.
 inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 inoremap <expr><C-y>  neocomplete#close_popup()
 inoremap <expr><C-e>  neocomplete#cancel_popup()
 
+
 " reselect blocks after indenting/dedenting
 vnoremap < <gv
 vnoremap > >gv
+
+" nightmare mode
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>
+noremap h <NOP>
+noremap l <NOP>
+
+" Switch between the last two files
+nnoremap <leader><leader> <c-^>
 
 " set terminal title
 if &term == "screen"
@@ -280,15 +274,21 @@ endfunction
 inoremap <expr> <tab> InsertTabWrapper()
 inoremap <s-tab> <c-n>
 
+
 " Setup vroom
 let g:vroom_use_colors = 1
 let g:vroom_use_vimux = 1
-let g:vroom_map_keys = 0
 let g:vroom_use_dispatch = 1
+let g:vroom_map_keys = 0
 
 map  <Leader>t :VroomRunTestFile<cr>
 map  <Leader>T :VroomRunNearestTest<cr>
 map  <Leader>l :VroomRunLastTest<cr>
 
+
 " close vimux pane
 map  <leader><bs> :VimuxCloseRunner<cr>
+
+
+" force vimdiff open at vertical spleets
+set diffopt+=vertical

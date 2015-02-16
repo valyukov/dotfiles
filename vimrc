@@ -97,6 +97,8 @@ set number                " show line numbers
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 set showtabline=2
+set cursorline
+
 
 " Display extra whitespace
 set list listchars=tab:»·,trail:·,nbsp:·
@@ -140,11 +142,11 @@ if executable('ag')
   let g:unite_source_grep_recursive_opt=''
 endif
 
-nnoremap <leader>f :<C-u>Unite -buffer-name=files    file_rec<cr>
-nnoremap <leader>r :<C-u>Unite -buffer-name=mru      file_mru<cr>
-nnoremap <leader>o :<C-u>Unite -buffer-name=outline  outline<cr>
-nnoremap <leader>e :<C-u>Unite -buffer-name=buffer  buffer<cr>
-nnoremap <leader>g :<C-u>Unite -buffer-name=grep grep<cr>
+nnoremap <leader>f :<C-u>Unite -buffer-name=files     file_rec/async:!<cr>
+nnoremap <leader>r :<C-u>Unite -buffer-name=mru       file_mru<cr>
+nnoremap <leader>o :<C-u>Unite -buffer-name=outline   outline<cr>
+nnoremap <leader>e :<C-u>Unite -buffer-name=buffer    buffer<cr>
+nnoremap <leader>g :<C-u>Unite -buffer-name=grep      grep<cr>
 nnoremap <leader>h :<C-u>Unite -buffer-name=snippets  neosnippet<cr>
 
 autocmd FileType unite call s:unite_settings()
@@ -279,6 +281,7 @@ inoremap <s-tab> <c-n>
 let g:vroom_use_colors = 1
 let g:vroom_use_vimux = 1
 let g:vroom_use_dispatch = 1
+let g:vroom_write_all = 1
 let g:vroom_map_keys = 0
 
 map  <Leader>t :VroomRunTestFile<cr>

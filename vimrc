@@ -110,7 +110,6 @@ set splitright
 " Text-Object
 runtime macros/matchit.vim
 
-set tags+=./.git/tags
 
 " Unite
 call unite#custom#profile('default', 'context', {
@@ -138,7 +137,7 @@ if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
 
   let g:unite_source_grep_command='ag'
-  let g:unite_source_grep_default_opts='--nocolor --nogroup -S -C4'
+  let g:unite_source_grep_default_opts='--nocolor --nogroup -S -C6'
   let g:unite_source_grep_recursive_opt=''
 endif
 
@@ -146,8 +145,9 @@ nnoremap <leader>f :<C-u>Unite -buffer-name=files     file_rec/async:!<cr>
 nnoremap <leader>r :<C-u>Unite -buffer-name=mru       file_mru<cr>
 nnoremap <leader>o :<C-u>Unite -buffer-name=outline   outline<cr>
 nnoremap <leader>e :<C-u>Unite -buffer-name=buffer    buffer<cr>
-nnoremap <leader>g :<C-u>Unite -buffer-name=grep      grep<cr>
+nnoremap <leader>g :<C-u>Unite -buffer-name=grep -quick-match grep<cr>
 nnoremap <leader>h :<C-u>Unite -buffer-name=snippets  neosnippet<cr>
+nnoremap <leader>k :<C-u>UniteWithCursorWord -buffer-name=grep grep<cr>
 
 autocmd FileType unite call s:unite_settings()
 

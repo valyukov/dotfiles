@@ -61,10 +61,6 @@ Plugin 'Shougo/context_filetype.vim'
 Plugin 'honza/vim-snippets'
 Plugin 'skalnik/vim-vroom'
 
-if filereadable(expand("~/.vimrc.bundles.local"))
-  source ~/.vimrc.bundles.local
-endif
-
 call vundle#end()
 filetype on
 

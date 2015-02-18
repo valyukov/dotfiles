@@ -9,7 +9,7 @@ if filereadable(expand("~/.vimrc.bundles"))
   source ~/.vimrc.bundles
 endif
 
-set shell=/bin/sh
+set hidden
 set laststatus=2          " last window always has a statusline
 set nohlsearch            " Don't continue to highlight searched phrases.
 set ignorecase            " Make searches case-insensitive.

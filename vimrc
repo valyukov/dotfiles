@@ -9,7 +9,6 @@ if filereadable(expand("~/.vimrc.bundles"))
   source ~/.vimrc.bundles
 endif
 
-set hidden
 set shell=/bin/sh
 set laststatus=2          " last window always has a statusline
 set nohlsearch            " Don't continue to highlight searched phrases.
@@ -288,10 +287,10 @@ map  <Leader>t :VroomRunTestFile<cr>
 map  <Leader>T :VroomRunNearestTest<cr>
 map  <Leader>l :VroomRunLastTest<cr>
 
-
-" close vimux pane
+" Vimux 
 map  <leader><bs> :VimuxCloseRunner<cr>
-
+map  <leader>vk    :VimuxScrollUpInspect<cr>
+map  <leader>vj    :VimuxScrollDownInspect<cr>
 
 " force vimdiff open at vertical spleets
 set diffopt+=vertical

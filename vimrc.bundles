@@ -19,9 +19,6 @@ Plugin 'nelstrom/vim-textobj-rubyblock'
 " Coffee-script
 Plugin 'kchmck/vim-coffee-script'
 
-" JavaScript
-Plugin 'pangloss/vim-javascript'
-
 " Navigation
 Plugin 'scrooloose/nerdtree'
 Plugin 'Shougo/unite.vim'
@@ -30,20 +27,18 @@ Plugin 'Shougo/neomru.vim'
 Plugin 'Shougo/unite-outline'
 
 " Shell
-Plugin 'christoomey/vim-run-interactive'
 Plugin 'pbrisbin/vim-mkdir'
 Plugin 'tpope/vim-eunuch'
 Plugin 'tpope/vim-rvm'
 Plugin 'benmills/vimux'
-Plugin 'tpope/vim-dispatch'
 
 " GUI
 Plugin 'bling/vim-airline'
-Plugin 'tomasr/molokai'
 Plugin 'jnurmine/Zenburn'
 
 " Git support
 Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-dispatch'
 
 " Code manipulation
 Plugin 'nathanaelkane/vim-indent-guides'

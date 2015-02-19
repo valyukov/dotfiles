@@ -126,7 +126,6 @@ call unite#custom#source(
       \ ['matcher_default', 'matcher_hide_hidden_files',
       \  'matcher_hide_current_file'])
 
-call unite#custom#source('grep', 'matchers', 'matcher_fuzzy')
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#filters#sorter_default#use(['sorter_rank'])
 call unite#custom#default_action('file', 'tabopen')
@@ -144,9 +143,9 @@ nnoremap <leader>f :<C-u>Unite -buffer-name=files     file_rec/async:!<cr>
 nnoremap <leader>r :<C-u>Unite -buffer-name=mru       file_mru<cr>
 nnoremap <leader>o :<C-u>Unite -buffer-name=outline   outline<cr>
 nnoremap <leader>e :<C-u>Unite -buffer-name=buffer    buffer<cr>
-nnoremap <leader>g :<C-u>Unite -buffer-name=grep -quick-match grep<cr>
 nnoremap <leader>h :<C-u>Unite -buffer-name=snippets  neosnippet<cr>
-nnoremap <leader>k :<C-u>UniteWithCursorWord -buffer-name=grep grep<cr>
+nnoremap <leader>G :<C-u>Unite -buffer-name=grep      grep<cr>
+nnoremap <leader>g :<C-u>UniteWithCursorWord -buffer-name=grep grep<cr>
 
 autocmd FileType unite call s:unite_settings()
 
@@ -158,6 +157,7 @@ function! s:unite_settings()
   imap <silent><buffer><expr> <C-v> unite#do_action('vsplit')
   imap <silent><buffer><expr> <C-t> unite#do_action('tabopen')
   nmap <buffer> <ESC> <Plug>(unite_exit)
+  nmap <buffer> <C-c> <Plug>(unite_exit)
 endfunction
 
 
@@ -287,10 +287,10 @@ map  <Leader>t :VroomRunTestFile<cr>
 map  <Leader>T :VroomRunNearestTest<cr>
 map  <Leader>l :VroomRunLastTest<cr>
 
-" Vimux 
-map  <leader><bs> :VimuxCloseRunner<cr>
-map  <leader>vk    :VimuxScrollUpInspect<cr>
-map  <leader>vj    :VimuxScrollDownInspect<cr>
+" Vimux
+map  <leader>c   :VimuxCloseRunner<cr>
+map  <leader>k   :VimuxScrollUpInspect<cr>
+map  <leader>j   :VimuxScrollDownInspect<cr>
 
 " force vimdiff open at vertical spleets
 set diffopt+=vertical

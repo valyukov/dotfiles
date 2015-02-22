@@ -128,7 +128,7 @@ call unite#custom#source(
 
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#filters#sorter_default#use(['sorter_rank'])
-call unite#custom#default_action('file', 'tabopen')
+call unite#custom#default_action('file,file_rec/async:!,file_rec/git', 'tabopen')
 
 if executable('ag')
   " Use Ag over Grep
@@ -139,11 +139,11 @@ if executable('ag')
   let g:unite_source_grep_recursive_opt=''
 endif
 
-nnoremap <leader>f :<C-u>Unite -buffer-name=files     file_rec/async:!<cr>
-nnoremap <leader>r :<C-u>Unite -buffer-name=mru       file_mru<cr>
+nnoremap <leader>f :<C-u>Unite -buffer-name=files -resume   file_rec/async:!<cr>
+nnoremap <leader>r :<C-u>Unite -buffer-name=mru             file_mru<cr>
+nnoremap <leader>p :<C-u>Unite -buffer-name=git -resume     file_rec/git<cr>
 nnoremap <leader>o :<C-u>Unite -buffer-name=outline   outline<cr>
 nnoremap <leader>e :<C-u>Unite -buffer-name=buffer    buffer<cr>
-nnoremap <leader>h :<C-u>Unite -buffer-name=snippets  neosnippet<cr>
 nnoremap <leader>G :<C-u>Unite -buffer-name=grep      grep<cr>
 nnoremap <leader>g :<C-u>UniteWithCursorWord -buffer-name=grep grep<cr>
 
@@ -198,8 +198,6 @@ let g:neocomplete#enable_smart_case = 1
 " Set minimum syntax keyword length.
 let g:neocomplete#sources#syntax#min_keyword_length = 3
 let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-let g:vroom_use_dispatch = 1
-let g:vroom_use_dispatch = 1
 
 " Define dictionary.
 let g:neocomplete#sources#dictionary#dictionaries = {
@@ -223,13 +221,9 @@ inoremap <expr><C-l>     neocomplete#complete_common_string()
 " <CR>: close popup and save indent.
 inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
 function! s:my_cr_function()
-  return neocomplete#close_popup() . "\<CR>"
   " For no inserting <CR> key.
-  "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
+  return pumvisible() ? neocomplete#close_popup() : "\<CR>"
 endfunction
-
-" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 " <C-h>, <BS>: close popup and delete backword char.
 inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
@@ -269,12 +263,11 @@ function! InsertTabWrapper()
   if !col || getline('.')[col - 1] !~ '\k'
     return "\<tab>"
   else
-    return "\<c-p>"
+    return "\<c-n>"
   endif
 endfunction
 inoremap <expr> <tab> InsertTabWrapper()
 inoremap <s-tab> <c-n>
-
 
 " Setup vroom
 let g:vroom_use_colors = 1

@@ -15,6 +15,7 @@ Plugin 'tpope/vim-rake'
 Plugin 'tpope/vim-bundler'
 Plugin 'ecomba/vim-ruby-refactoring'
 Plugin 'nelstrom/vim-textobj-rubyblock'
+Plugin 'ngmy/vim-rubocop'
 
 " Coffee-script
 Plugin 'kchmck/vim-coffee-script'

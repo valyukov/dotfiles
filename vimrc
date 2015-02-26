@@ -287,3 +287,7 @@ map  <leader>j   :VimuxScrollDownInspect<cr>
 
 " force vimdiff open at vertical spleets
 set diffopt+=vertical
+
+" Rubocop settings
+let g:vimrubocop_config = '~/.rubocop.yml'
+

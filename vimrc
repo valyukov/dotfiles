@@ -290,5 +290,8 @@ set diffopt+=vertical
 let g:vimrubocop_config = '~/.rubocop.yml'
 
 " Fugitive show on github mapping
-nnoremap <Leader>gb :<C-R>=line('.')<CR>Gbrowse<CR>
-vnoremap <Leader>gb :Gbrowse<CR>
+nnoremap <leader>gb :<c-r>=line('.')<cr>Gbrowse<cr>
+vnoremap <leader>gb :Gbrowse<cr>
+nnoremap <leader>gs :Gstatus<cr>
+nnoremap <leader>gp :Gpush<cr>
+nnoremap <leader>gd :Gdiff<cr>

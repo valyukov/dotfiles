@@ -14,16 +14,16 @@ set laststatus=2          " last window always has a statusline
 set nohlsearch            " Don't continue to highlight searched phrases.
 set ignorecase            " Make searches case-insensitive.
 set nowrap                " don't wrap text
-set backspace=2   " Backspace deletes like most programs in insert mode
+set backspace=2           " Backspace deletes like most programs in insert mode
 set nobackup
 set nowritebackup
-set noswapfile    " http://robots.thoughtbot.com/post/18739402579/global-gitignore#comment-458413287
+set noswapfile
 set history=50
-set ruler         " show the cursor position all the time
-set showcmd       " display incomplete commands
-set incsearch     " do incremental searching
-set laststatus=2  " Always display the status line
-set autowrite     " Automatically :write before running commands
+set ruler                 " show the cursor position all the time
+set showcmd               " display incomplete commands
+set incsearch             " do incremental searching
+set laststatus=2          " Always display the status line
+set autowrite             " Automatically :write before running commands
 
 " Idention
 filetype plugin indent on
@@ -128,7 +128,7 @@ call unite#custom#source(
 
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 call unite#filters#sorter_default#use(['sorter_rank'])
-call unite#custom#default_action('file,file_rec/async:!,file_rec/git', 'tabopen')
+call unite#custom#default_action('grep,file,file_rec/async:!,file_rec/git', 'tabopen')
 
 if executable('ag')
   " Use Ag over Grep
@@ -139,13 +139,13 @@ if executable('ag')
   let g:unite_source_grep_recursive_opt=''
 endif
 
-nnoremap <leader>f :<C-u>Unite -buffer-name=files -resume   file_rec/async:!<cr>
-nnoremap <leader>r :<C-u>Unite -buffer-name=mru             file_mru<cr>
-nnoremap <leader>p :<C-u>Unite -buffer-name=git -resume     file_rec/git<cr>
-nnoremap <leader>o :<C-u>Unite -buffer-name=outline   outline<cr>
-nnoremap <leader>e :<C-u>Unite -buffer-name=buffer    buffer<cr>
-nnoremap <leader>G :<C-u>Unite -buffer-name=grep      grep<cr>
-nnoremap <leader>g :<C-u>UniteWithCursorWord -buffer-name=grep grep<cr>
+nnoremap <leader>f :<C-u>Unite -buffer-name=files -resume       file_rec/async:!<cr>
+nnoremap <leader>r :<C-u>Unite -buffer-name=mru                 file_mru<cr>
+nnoremap <leader>p :<C-u>Unite -buffer-name=git -resume         file_rec/git<cr>
+nnoremap <leader>o :<C-u>Unite -buffer-name=outline             outline<cr>
+nnoremap <leader>e :<C-u>Unite -buffer-name=buffer              buffer<cr>
+nnoremap <leader>G :<C-u>Unite -buffer-name=grep                grep<cr>
+nnoremap <leader>g :<C-u>UniteWithCursorWord -buffer-name=grep  grep<cr>
 
 autocmd FileType unite call s:unite_settings()
 
@@ -241,8 +241,6 @@ noremap <Up> <NOP>
 noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
-noremap h <NOP>
-noremap l <NOP>
 
 " Switch between the last two files
 nnoremap <leader><leader> <c-^>
@@ -291,3 +289,6 @@ set diffopt+=vertical
 " Rubocop settings
 let g:vimrubocop_config = '~/.rubocop.yml'
 
+" Fugitive show on github mapping
+nnoremap <Leader>gb :<C-R>=line('.')<CR>Gbrowse<CR>
+vnoremap <Leader>gb :Gbrowse<CR>

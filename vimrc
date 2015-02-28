@@ -265,7 +265,7 @@ function! InsertTabWrapper()
   endif
 endfunction
 inoremap <expr> <tab> InsertTabWrapper()
-inoremap <s-tab> <c-n>
+inoremap <s-tab> <c-p>
 
 " Setup vroom
 let g:vroom_use_colors = 1

@@ -33,6 +33,13 @@ Plugin 'tpope/vim-eunuch'
 Plugin 'tpope/vim-rvm'
 Plugin 'benmills/vimux'
 
+" Clojure
+Plugin 'tpope/vim-fireplace'
+Plugin 'guns/vim-clojure-static'
+Plugin 'amdt/vim-niji'
+Plugin 'tpope/vim-leiningen'
+Plugin 'tpope/vim-classpath'
+
 " GUI
 Plugin 'bling/vim-airline'
 Plugin 'jnurmine/Zenburn'

@@ -43,7 +43,7 @@ Plugin 'tpope/vim-classpath'
 " GUI
 Plugin 'bling/vim-airline'
 Plugin 'jnurmine/Zenburn'
-
+Plugin 'tsukkee/unite-help'
 " Git support
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-dispatch'

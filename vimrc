@@ -146,7 +146,8 @@ nnoremap <leader>o :<C-u>Unite -buffer-name=outline             outline<cr>
 nnoremap <leader>e :<C-u>Unite -buffer-name=buffer              buffer<cr>
 nnoremap <leader>G :<C-u>Unite -buffer-name=grep                grep<cr>
 nnoremap <leader>g :<C-u>UniteWithCursorWord -buffer-name=grep  grep<cr>
-
+nnoremap <leader>h :<C-u>UniteWithCursorWord -buffer-name=help  help<cr>
+nnoremap <leader>H :<C-u>Unite -buffer-name=help                help<cr>
 autocmd FileType unite call s:unite_settings()
 
 function! s:unite_settings()

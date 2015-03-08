@@ -1,7 +1,28 @@
-Documentation:
-    Enabled: false
-Metrics/LineLength:
-    Max: 120
 Style/StringLiterals:
   EnforcedStyle: double_quotes
+
+Style/IfUnlessModifier:
+  MaxLineLength: 120
+
+Style/WhileUntilModifier:
+  MaxLineLength: 120
+
+Style/AsciiComments:
+  Enabled: false
+
+Metrics/ClassLength:
+  Max: 300
+
+MethodLength:
+  Max: 25
+
+Metrics/LineLength:
+  Max: 120
+  AllowURI: true
+
+Metrics/AbcSize:
+  Max: 25
+
+Documentation:
+  Enabled: false
 

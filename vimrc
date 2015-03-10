@@ -93,8 +93,6 @@ set t_Co=256              " enable 256-color mode.
 syntax enable             " enable syntax highlighting (previously syntax on).
 colorscheme zenburn       " set colorscheme
 set number                " show line numbers
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#fnamemod = ':t'
 set showtabline=2
 set cursorline
 
@@ -285,15 +283,12 @@ map  <Leader>T :VroomRunNearestTest<cr>
 map  <Leader>l :VroomRunLastTest<cr>
 
 " Vimux
-map  <leader>c   :VimuxCloseRunner<cr>
-map  <leader>k   :VimuxScrollUpInspect<cr>
-map  <leader>j   :VimuxScrollDownInspect<cr>
+map  <leader>c :VimuxCloseRunner<cr>
+map  <leader>k :VimuxScrollUpInspect<cr>
+map  <leader>j :VimuxScrollDownInspect<cr>
 
 " force vimdiff open at vertical spleets
 set diffopt+=vertical
-
-" Rubocop settings
-let g:vimrubocop_config = '~/.rubocop.yml'
 
 " Fugitive show on github mapping
 nnoremap <leader>gb :<c-r>=line('.')<cr>Gbrowse<cr>
@@ -306,4 +301,19 @@ nnoremap <leader>gd :Gdiff<cr>
 " Tabs
 nnoremap <Tab> gt
 nnoremap <S-Tab> gT
-nnoremap <silent> <S-t> :tabnew<CR>
+
+
+" Syntastic settings
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_aggregate_errors = 1
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_ruby_checkers = ['mri', 'rubocop']
+let g:syntastic_ruby_rubocop_args = "-D -c ~/.rubocop.yml"
+
+
+" airline settings
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+let g:airline#extensions#tabline#show_close_button = 0

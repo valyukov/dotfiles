@@ -7,18 +7,15 @@ Style/IfUnlessModifier:
 Style/WhileUntilModifier:
   MaxLineLength: 120
 
-Style/AsciiComments:
-  Enabled: false
+Metrics/LineLength:
+  Max: 120
+  AllowURI: true
 
 Metrics/ClassLength:
   Max: 300
 
 MethodLength:
-  Max: 25
-
-Metrics/LineLength:
-  Max: 120
-  AllowURI: true
+  Max: 15
 
 Metrics/AbcSize:
   Max: 25
@@ -26,3 +23,5 @@ Metrics/AbcSize:
 Documentation:
   Enabled: false
 
+Style/MultilineOperationIndentation:
+  EnforcedStyle: indented

@@ -15,6 +15,10 @@ Plugin 'tpope/vim-rake'
 Plugin 'tpope/vim-bundler'
 Plugin 'ecomba/vim-ruby-refactoring'
 Plugin 'nelstrom/vim-textobj-rubyblock'
+Plugin 'jgdavey/vim-blockle'
+Plugin 'skalnik/vim-vroom'
+Plugin 'tpope/vim-rvm'
+Plugin 'tpope/vim-endwise'
 
 " Coffee-script
 Plugin 'kchmck/vim-coffee-script'
@@ -29,8 +33,8 @@ Plugin 'Shougo/unite-outline'
 " Shell
 Plugin 'pbrisbin/vim-mkdir'
 Plugin 'tpope/vim-eunuch'
-Plugin 'tpope/vim-rvm'
 Plugin 'benmills/vimux'
+Plugin 'tpope/vim-dispatch'
 
 " Clojure
 Plugin 'tpope/vim-fireplace'
@@ -43,17 +47,17 @@ Plugin 'tpope/vim-classpath'
 Plugin 'bling/vim-airline'
 Plugin 'jnurmine/Zenburn'
 Plugin 'tsukkee/unite-help'
+
 " Git support
 Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-dispatch'
+Plugin 'idanarye/vim-merginal'
+Plugin 'gregsexton/gitv'
 
 " Code manipulation
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'tpope/vim-surround'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'kana/vim-textobj-user'
-Plugin 'Raimondi/delimitMate'
-Plugin 'tpope/vim-endwise'
 Plugin 'vim-scripts/ctags.vim'
 Plugin 'vim-scripts/matchit.zip'
 Bundle 'Shougo/neosnippet'
@@ -61,8 +65,10 @@ Bundle 'Shougo/neosnippet-snippets'
 Bundle 'Shougo/neocomplete.vim'
 Plugin 'Shougo/context_filetype.vim'
 Plugin 'honza/vim-snippets'
-Plugin 'skalnik/vim-vroom'
 Plugin 'scrooloose/syntastic'
+Plugin 'AndrewRadev/splitjoin.vim'
+Plugin 'wellle/targets.vim'
+Plugin 'junegunn/vim-easy-align'
 
 call vundle#end()
 filetype on

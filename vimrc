@@ -70,6 +70,9 @@ augroup vimrcEx
   " Vim idention
   autocmd FileType vim setlocal ts=2 sts=2 sw=2
 
+  " Yaml spellchecking
+  autocmd FileType yaml setlocal spell spelllang=ru_ru,en_us
+
   " Open help at vertical split
   autocmd BufRead,BufEnter */doc/* wincmd L
 augroup END
@@ -96,13 +99,38 @@ set number                " show line numbers
 set showtabline=2
 set cursorline
 
+" Improve vim's scrolling speed
+set ttyfast
+set ttyscroll=3
+set lazyredraw
+
+" Syntax coloring lines that are too long just slows down the world
+set synmaxcol=1200
 
 " Display extra whitespace
-set list listchars=tab:»·,trail:·,nbsp:·
+set list listchars=tab:»·,trail:·,nbsp:·,extends:❯,precedes:❮
 
 " Open new split panes to right and bottom, which feels more natural
 set splitbelow
 set splitright
+
+" Auto-reload buffers when files are changed on disk
+set autoread
+
+" Lines with equal indent form a fold.
+set foldmethod=indent
+set foldlevel=1
+set foldnestmax=10
+
+" Open all folds by default
+set nofoldenable
+
+set undofile                    " Save undo's after file closes
+set undodir=~/.vim/undo         " where to save undo histories
+set undolevels=1000             " How many undos
+set undoreload=10000            " number of lines to save for undo
+
+set tagbsearch " use binary searching for tags
 
 " Text-Object
 runtime macros/matchit.vim
@@ -231,10 +259,9 @@ inoremap <expr><C-y>  neocomplete#close_popup()
 inoremap <expr><C-e>  neocomplete#cancel_popup()
 
 " Ruby completions
-let g:rubycomplete_buffer_loading = 1
-let g:rubycomplete_classes_in_global = 1
-let g:rubycomplete_rails = 1
-
+" let g:rubycomplete_buffer_loading = 1
+" let g:rubycomplete_classes_in_global = 1
+" let g:rubycomplete_rails = 1
 
 " reselect blocks after indenting/dedenting
 vnoremap < <gv
@@ -271,22 +298,6 @@ endfunction
 inoremap <expr> <tab> InsertTabWrapper()
 inoremap <s-tab> <c-p>
 
-" Setup vroom
-let g:vroom_use_colors = 1
-let g:vroom_use_vimux = 1
-let g:vroom_use_dispatch = 1
-let g:vroom_write_all = 1
-let g:vroom_map_keys = 0
-
-map  <Leader>t :VroomRunTestFile<cr>
-map  <Leader>T :VroomRunNearestTest<cr>
-map  <Leader>l :VroomRunLastTest<cr>
-
-" Vimux
-map  <leader>c :VimuxCloseRunner<cr>
-map  <leader>k :VimuxScrollUpInspect<cr>
-map  <leader>j :VimuxScrollDownInspect<cr>
-
 " force vimdiff open at vertical spleets
 set diffopt+=vertical
 
@@ -298,14 +309,9 @@ nnoremap <leader>gp :Gpush<cr>
 nnoremap <leader>gd :Gdiff<cr>
 
 
-" Tabs
-nnoremap <Tab> gt
-nnoremap <S-Tab> gT
-
-
 " Syntastic settings
 let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 let g:syntastic_aggregate_errors = 1
 let g:syntastic_always_populate_loc_list = 1
@@ -315,5 +321,28 @@ let g:syntastic_ruby_rubocop_args = "-D -c ~/.rubocop.yml"
 
 " airline settings
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:airline#extensions#tabline#show_close_button = 0
+
+" delete buffer
+nnoremap <C-c> :bnext\|bdelete #<cr>
+
+" Setup vroom
+let g:vroom_use_colors = 1
+let g:vroom_use_vimux = 1
+let g:vroom_write_all = 1
+let g:vroom_map_keys = 0
+let g:vroom_use_spring = 1
+let g:vroom_use_binstubs = 1
+
+map  <leader>t :VroomRunTestFile<cr>
+map  <leader>T :VroomRunNearestTest<cr>
+map  <leader>l :VroomRunLastTest<cr>
+
+" Vimux
+map <leader>c :VimuxCloseRunner<cr>
+map <leader>i :VimuxInspectRunner<cr>
+map <leader>z :VimuxZoomRunner<cr>
+
+" NerdTree
+map <leader>n :NERDTreeToggle<cr>

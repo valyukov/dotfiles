@@ -1,5 +1,5 @@
 # Unix
-alias tlf="tail -f"
+alias tlf="less +F -r"
 alias ln='ln -v'
 alias mkdir='mkdir -p'
 alias ...='../..'
@@ -10,6 +10,7 @@ alias -g G='| grep'
 alias -g M='| less'
 alias -g L='| wc -l'
 alias -g ONE="| awk '{ print \$1}'"
+alias -g TWO="| awk '{ print \$2}'"
 alias e='$EDITOR'
 alias v='$VISUAL'
 

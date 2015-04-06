@@ -24,6 +24,7 @@ set showcmd               " display incomplete commands
 set incsearch             " do incremental searching
 set laststatus=2          " Always display the status line
 set autowrite             " Automatically :write before running commands
+set lazyredraw
 
 " Idention
 filetype plugin indent on
@@ -137,31 +138,34 @@ runtime macros/matchit.vim
 
 
 " Unite
+let g:unite_data_directory="~/.vim/.cache/unite"
+let g:unite_source_rec_max_cache_files=10000
+let g:unite_source_file_mru_limit = 200
+let g:unite_prompt='» '
+
 call unite#custom#profile('default', 'context', {
-      \   'start_insert': 1,
-      \   'winheight': 10,
-      \   'direction': 'botright',
-      \ })
+                        \ 'start_insert': 1,
+                        \ 'winheight': 10,
+                        \ 'direction': 'botright',
+                        \ })
 
-call unite#custom_source(
-      \'file_rec/async,file_mru,file,buffer,grep', 'ignore_pattern',
-      \join(['\.git/'], '\|'))
-
-call unite#custom#source(
-      \ 'file', 'matchers',
-      \ ['matcher_default', 'matcher_hide_hidden_files',
-      \  'matcher_hide_current_file'])
+call unite#custom#source('file_rec/async:!,file_mru,buffer,file_rec/git,grep', 'matchers',
+                        \['converter_relative_word',
+                        \ 'matcher_hide_hidden_files',
+                        \ 'matcher_project_ignore_files',
+                        \ 'matcher_hide_current_file',
+                        \ 'matcher_default'])
 
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
-call unite#filters#sorter_default#use(['sorter_rank'])
-call unite#custom#default_action('grep,file,file_rec/async:!,file_rec/git', 'tabopen')
+call unite#filters#sorter_default#use(['sorter_selecta'])
+call unite#custom#default_action('grep,file_rec/async:!,file_rec/git', 'tabopen')
 
 if executable('ag')
   " Use Ag over Grep
   set grepprg=ag\ --nogroup\ --nocolor
 
   let g:unite_source_grep_command='ag'
-  let g:unite_source_grep_default_opts='--nocolor --nogroup -S -C6'
+  let g:unite_source_grep_default_opts='--nocolor --nogroup -S -C8'
   let g:unite_source_grep_recursive_opt=''
 endif
 
@@ -235,6 +239,12 @@ let g:neocomplete#sources#dictionary#dictionaries = {
 if !exists('g:neocomplete#keyword_patterns')
   let g:neocomplete#keyword_patterns = {}
 endif
+
+" Set async completion.
+let g:monster#completion#rcodetools#backend = "async_rct_complete"
+
+" Use neocomplete.vim
+let g:neocomplete#force_omni_input_patterns = {'ruby' : '[^. *\t]\.\|\h\w*::'}
 
 let g:neocomplete#keyword_patterns['default'] = '\h\w*'
 " Search from neocomplete, omni candidates, vim keywords.
@@ -346,3 +356,6 @@ map <leader>z :VimuxZoomRunner<cr>
 
 " NerdTree
 map <leader>n :NERDTreeToggle<cr>
+
+" NeoMRU
+let g:neomru#file_mru_limit = 50

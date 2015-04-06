@@ -2,75 +2,87 @@ if &compatible
   set nocompatible
 end
 
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim/
-call vundle#begin()
-" Let Vundle manage Vundle
-Plugin 'gmarik/Vundle.vim'
+if has('vim_starting')
+  if &compatible
+    set nocompatible               " Be iMproved
+  endif
+
+  " Required:
+  set runtimepath+=~/.vim/bundle/neobundle.vim/
+endif
+
+call neobundle#begin(expand('~/.vim/bundle/'))
+NeoBundleFetch 'Shougo/neobundle.vim'
 
 " Ruby Support
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'tpope/vim-rails'
-Plugin 'tpope/vim-rake'
-Plugin 'tpope/vim-bundler'
-Plugin 'ecomba/vim-ruby-refactoring'
-Plugin 'nelstrom/vim-textobj-rubyblock'
-Plugin 'jgdavey/vim-blockle'
-Plugin 'skalnik/vim-vroom'
-Plugin 'tpope/vim-rvm'
-Plugin 'tpope/vim-endwise'
+NeoBundle 'vim-ruby/vim-ruby'
+NeoBundle 'tpope/vim-rails'
+NeoBundle 'tpope/vim-rake'
+NeoBundle 'tpope/vim-bundler'
+NeoBundle 'ecomba/vim-ruby-refactoring'
+NeoBundle 'nelstrom/vim-textobj-rubyblock'
+NeoBundle 'jgdavey/vim-blockle'
+NeoBundle 'skalnik/vim-vroom'
+NeoBundle 'tpope/vim-rvm'
+NeoBundle 'tpope/vim-endwise'
+NeoBundle 'osyo-manga/vim-monster'
 
 " Coffee-script
-Plugin 'kchmck/vim-coffee-script'
+NeoBundle 'kchmck/vim-coffee-script'
+NeoBundle 'mtscout6/vim-cjsx'
+NeoBundle 'carlosvillu/coffeScript-VIM-Snippets'
 
 " Navigation
-Plugin 'scrooloose/nerdtree'
-Plugin 'Shougo/unite.vim'
-Plugin 'Shougo/vimproc.vim'
-Plugin 'Shougo/neomru.vim'
-Plugin 'Shougo/unite-outline'
+NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/vimproc.vim', {
+      \ 'build' : {
+      \     'windows' : 'tools\\update-dll-mingw',
+      \     'cygwin' : 'make -f make_cygwin.mak',
+      \     'mac' : 'make -f make_mac.mak',
+      \     'linux' : 'make',
+      \     'unix' : 'gmake',
+      \    },
+      \ }
+
+NeoBundle 'Shougo/neomru.vim'
+NeoBundle 'Shougo/unite-outline'
 
 " Shell
-Plugin 'pbrisbin/vim-mkdir'
-Plugin 'tpope/vim-eunuch'
-Plugin 'benmills/vimux'
-Plugin 'tpope/vim-dispatch'
-
-" Clojure
-Plugin 'tpope/vim-fireplace'
-Plugin 'guns/vim-clojure-static'
-Plugin 'amdt/vim-niji'
-Plugin 'tpope/vim-leiningen'
-Plugin 'tpope/vim-classpath'
+NeoBundle 'pbrisbin/vim-mkdir'
+NeoBundle 'tpope/vim-eunuch'
+NeoBundle 'benmills/vimux'
+NeoBundle 'tpope/vim-dispatch'
 
 " GUI
-Plugin 'bling/vim-airline'
-Plugin 'jnurmine/Zenburn'
-Plugin 'tsukkee/unite-help'
+NeoBundle 'bling/vim-airline'
+NeoBundle 'jnurmine/Zenburn'
+NeoBundle 'tsukkee/unite-help'
 
 " Git support
-Plugin 'tpope/vim-fugitive'
-Plugin 'idanarye/vim-merginal'
-Plugin 'gregsexton/gitv'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'idanarye/vim-merginal'
+NeoBundle 'gregsexton/gitv'
 
 " Code manipulation
-Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'tpope/vim-surround'
-Plugin 'tomtom/tcomment_vim'
-Plugin 'kana/vim-textobj-user'
-Plugin 'vim-scripts/ctags.vim'
-Plugin 'vim-scripts/matchit.zip'
-Bundle 'Shougo/neosnippet'
-Bundle 'Shougo/neosnippet-snippets'
-Bundle 'Shougo/neocomplete.vim'
-Plugin 'Shougo/context_filetype.vim'
-Plugin 'honza/vim-snippets'
-Plugin 'scrooloose/syntastic'
-Plugin 'AndrewRadev/splitjoin.vim'
-Plugin 'wellle/targets.vim'
-Plugin 'junegunn/vim-easy-align'
+NeoBundle 'nathanaelkane/vim-indent-guides'
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'tomtom/tcomment_vim'
+NeoBundle 'kana/vim-textobj-user'
+NeoBundle 'vim-scripts/ctags.vim'
+NeoBundle 'vim-scripts/matchit.zip'
+NeoBundle 'Shougo/neosnippet'
+NeoBundle 'Shougo/neosnippet-snippets'
+NeoBundle 'Shougo/neocomplete.vim'
+NeoBundle 'Shougo/context_filetype.vim'
+NeoBundle 'honza/vim-snippets'
+NeoBundle 'scrooloose/syntastic'
+NeoBundle 'AndrewRadev/splitjoin.vim'
+NeoBundle 'wellle/targets.vim'
+NeoBundle 'junegunn/vim-easy-align'
+call neobundle#end()
 
-call vundle#end()
-filetype on
+NeoBundleCheck
 
-let g:vundle_default_git_proto = 'git'
+" Required:
+filetype plugin indent on

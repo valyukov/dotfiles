@@ -44,7 +44,6 @@ NeoBundle 'Shougo/vimproc.vim', {
       \     'unix' : 'gmake',
       \    },
       \ }
-
 NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'Shougo/unite-outline'
 
@@ -80,6 +79,7 @@ NeoBundle 'scrooloose/syntastic'
 NeoBundle 'AndrewRadev/splitjoin.vim'
 NeoBundle 'wellle/targets.vim'
 NeoBundle 'junegunn/vim-easy-align'
+NeoBundle 'tpope/vim-endwise'
 call neobundle#end()
 
 NeoBundleCheck

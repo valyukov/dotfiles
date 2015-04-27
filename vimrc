@@ -24,7 +24,9 @@ set showcmd               " display incomplete commands
 set incsearch             " do incremental searching
 set laststatus=2          " Always display the status line
 set autowrite             " Automatically :write before running commands
-set lazyredraw
+set lazyredraw            " Improve big file opening performance
+set wildignorecase        " Case-insensitive cmd autocomplete
+set fileignorecase        " Case-insensitive cmd autocomplete
 
 " Idention
 filetype plugin indent on

@@ -24,7 +24,6 @@ NeoBundle 'nelstrom/vim-textobj-rubyblock'
 NeoBundle 'jgdavey/vim-blockle'
 NeoBundle 'skalnik/vim-vroom'
 NeoBundle 'tpope/vim-rvm'
-NeoBundle 'tpope/vim-endwise'
 NeoBundle 'osyo-manga/vim-monster'
 
 " Coffee-script
@@ -44,8 +43,6 @@ NeoBundle 'Shougo/vimproc.vim', {
       \     'unix' : 'gmake',
       \    },
       \ }
-NeoBundle 'Shougo/neomru.vim'
-NeoBundle 'Shougo/unite-outline'
 
 " Shell
 NeoBundle 'pbrisbin/vim-mkdir'
@@ -56,7 +53,6 @@ NeoBundle 'tpope/vim-dispatch'
 " GUI
 NeoBundle 'bling/vim-airline'
 NeoBundle 'jnurmine/Zenburn'
-NeoBundle 'tsukkee/unite-help'
 
 " Git support
 NeoBundle 'tpope/vim-fugitive'

@@ -27,6 +27,7 @@ set autowrite             " Automatically :write before running commands
 set lazyredraw            " Improve big file opening performance
 set wildignorecase        " Case-insensitive cmd autocomplete
 set fileignorecase        " Case-insensitive cmd autocomplete
+set relativenumber        " Relative number
 
 " Idention
 filetype plugin indent on
@@ -44,20 +45,10 @@ augroup vimrcEx
 
   " Set syntax highlighting for specific file types
   autocmd BufRead,BufNewFile Appraisals set filetype=ruby
-  autocmd BufRead,BufNewFile *.md set filetype=markdown
-
-  " Enable spellchecking for Markdown
-  autocmd FileType markdown setlocal spell spelllang=ru_ru,en_us
-
-  " Automatically wrap at 80 characters for Markdown
-  autocmd BufRead,BufNewFile *.md setlocal textwidth=80
 
   " Automatically wrap at 72 characters and spell check git commit messages
   autocmd FileType gitcommit setlocal textwidth=120
   autocmd FileType gitcommit setlocal spell spelllang=ru_ru,en_us
-
-  " Allow stylesheets to autocomplete hyphenated words
-  autocmd FileType css,scss,sass setlocal iskeyword+=-
 
   " Ruby idention
   autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
@@ -78,6 +69,10 @@ augroup vimrcEx
 
   " Open help at vertical split
   autocmd BufRead,BufEnter */doc/* wincmd L
+
+  " Relative numeration only on focused window
+  autocmd FocusLost *   set number
+  autocmd FocusGained * set relativenumber
 augroup END
 
 
@@ -98,14 +93,12 @@ set colorcolumn=+1
 set t_Co=256              " enable 256-color mode.
 syntax enable             " enable syntax highlighting (previously syntax on).
 colorscheme zenburn       " set colorscheme
-set number                " show line numbers
 set showtabline=2
 set cursorline
 
 " Improve vim's scrolling speed
 set ttyfast
 set ttyscroll=3
-set lazyredraw
 
 " Syntax coloring lines that are too long just slows down the world
 set synmaxcol=1200
@@ -172,14 +165,8 @@ if executable('ag')
 endif
 
 nnoremap <leader>f :<C-u>Unite -buffer-name=files -resume       file_rec/async:!<cr>
-nnoremap <leader>r :<C-u>Unite -buffer-name=mru                 file_mru<cr>
-nnoremap <leader>p :<C-u>Unite -buffer-name=git -resume         file_rec/git<cr>
-nnoremap <leader>o :<C-u>Unite -buffer-name=outline             outline<cr>
-nnoremap <leader>e :<C-u>Unite -buffer-name=buffer              buffer<cr>
 nnoremap <leader>G :<C-u>Unite -buffer-name=grep                grep<cr>
 nnoremap <leader>g :<C-u>UniteWithCursorWord -buffer-name=grep  grep<cr>
-nnoremap <leader>h :<C-u>UniteWithCursorWord -buffer-name=help  help<cr>
-nnoremap <leader>H :<C-u>Unite -buffer-name=help                help<cr>
 autocmd FileType unite call s:unite_settings()
 
 function! s:unite_settings()
@@ -271,9 +258,9 @@ inoremap <expr><C-y>  neocomplete#close_popup()
 inoremap <expr><C-e>  neocomplete#cancel_popup()
 
 " Ruby completions
-" let g:rubycomplete_buffer_loading = 1
-" let g:rubycomplete_classes_in_global = 1
-" let g:rubycomplete_rails = 1
+let g:rubycomplete_buffer_loading = 1
+let g:rubycomplete_classes_in_global = 1
+let g:rubycomplete_rails = 1
 
 " reselect blocks after indenting/dedenting
 vnoremap < <gv
@@ -287,16 +274,6 @@ noremap <Right> <NOP>
 
 " Switch between the last two files
 nnoremap <leader><leader> <c-^>
-
-" set terminal title
-if &term == "screen"
-  set t_ts=^[k
-  set t_fs=^[\
-endif
-if &term == "screen" || &term == "xterm" || &term == "xterm-256color"
-  set title
-endif
-
 
 " Indent if we're at the beginning of a line. Else, do completion.
 function! InsertTabWrapper()
@@ -330,7 +307,6 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_ruby_checkers = ['mri', 'rubocop']
 let g:syntastic_ruby_rubocop_args = "-D -c ~/.rubocop.yml"
 
-
 " airline settings
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
@@ -359,5 +335,10 @@ map <leader>z :VimuxZoomRunner<cr>
 " NerdTree
 map <leader>n :NERDTreeToggle<cr>
 
-" NeoMRU
-let g:neomru#file_mru_limit = 50
+" Commandline navigation mapping
+cnoremap <C-a> <Home>
+cnoremap <C-e> <End>
+cnoremap <C-p> <Up>
+cnoremap <C-n> <Down>
+cnoremap <C-b> <Left>
+cnoremap <C-f> <Right>

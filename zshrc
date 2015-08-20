@@ -53,4 +53,8 @@ bindkey "^N" insert-last-word
 bindkey -s "^T" "^[Isudo ^[A" # "t" for "toughguy"
 
 # aliases
-[[ -f ~/.aliases ]] && source ~/.aliases
+[ -f ~/.aliases ] && source ~/.aliases
+
+# fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+

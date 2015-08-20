@@ -1,5 +1,14 @@
+Style/Documentation:
+  Enabled: false
+
+Style/Encoding:
+  Enabled: false
+
 Style/StringLiterals:
   EnforcedStyle: double_quotes
+
+Style/MultilineOperationIndentation:
+  EnforcedStyle: indented
 
 Style/IfUnlessModifier:
   MaxLineLength: 120
@@ -9,19 +18,18 @@ Style/WhileUntilModifier:
 
 Metrics/LineLength:
   Max: 120
-  AllowURI: true
 
 Metrics/ClassLength:
+  CountComments: false
   Max: 300
 
-MethodLength:
+Metrics/ModuleLength:
+  CountComments: false
+  Max: 300
+
+Metrics/MethodLength:
+  CountComments: false
   Max: 15
 
 Metrics/AbcSize:
   Max: 25
-
-Documentation:
-  Enabled: false
-
-Style/MultilineOperationIndentation:
-  EnforcedStyle: indented

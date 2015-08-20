@@ -28,6 +28,9 @@ set lazyredraw            " Improve big file opening performance
 set wildignorecase        " Case-insensitive cmd autocomplete
 set fileignorecase        " Case-insensitive cmd autocomplete
 set relativenumber        " Relative number
+set number                " Show number on current line
+set exrc                  " Enable project specific vimrc files
+set secure                " Disable unsafe commands for proejct specific files
 
 " Idention
 filetype plugin indent on
@@ -55,7 +58,6 @@ augroup vimrcEx
   autocmd FileType ruby compiler ruby
 
   " vim-ruby completions
-  autocmd FileType ruby,eruby           set omnifunc=rubycomplete#Complete
   autocmd BufNewFile,BufRead *.jbuilder set filetype=ruby
   autocmd BufNewFile,BufRead *.rabl     set filetype=ruby
   autocmd User Rails                    silent! Rlcd
@@ -113,11 +115,6 @@ set splitright
 " Auto-reload buffers when files are changed on disk
 set autoread
 
-" Lines with equal indent form a fold.
-set foldmethod=indent
-set foldlevel=1
-set foldnestmax=10
-
 " Open all folds by default
 set nofoldenable
 
@@ -130,56 +127,6 @@ set tagbsearch " use binary searching for tags
 
 " Text-Object
 runtime macros/matchit.vim
-
-
-" Unite
-let g:unite_data_directory="~/.vim/.cache/unite"
-let g:unite_source_rec_max_cache_files=10000
-let g:unite_source_file_mru_limit = 200
-let g:unite_prompt='» '
-
-call unite#custom#profile('default', 'context', {
-                        \ 'start_insert': 1,
-                        \ 'winheight': 10,
-                        \ 'direction': 'botright',
-                        \ })
-
-call unite#custom#source('file_rec/async:!,file_mru,buffer,file_rec/git,grep', 'matchers',
-                        \['converter_relative_word',
-                        \ 'matcher_hide_hidden_files',
-                        \ 'matcher_project_ignore_files',
-                        \ 'matcher_hide_current_file',
-                        \ 'matcher_default'])
-
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-call unite#filters#sorter_default#use(['sorter_selecta'])
-call unite#custom#default_action('grep,file_rec/async:!,file_rec/git', 'tabopen')
-
-if executable('ag')
-  " Use Ag over Grep
-  set grepprg=ag\ --nogroup\ --nocolor
-
-  let g:unite_source_grep_command='ag'
-  let g:unite_source_grep_default_opts='--nocolor --nogroup -S -C8'
-  let g:unite_source_grep_recursive_opt=''
-endif
-
-nnoremap <leader>f :<C-u>Unite -buffer-name=files -resume       file_rec/async:!<cr>
-nnoremap <leader>G :<C-u>Unite -buffer-name=grep                grep<cr>
-nnoremap <leader>g :<C-u>UniteWithCursorWord -buffer-name=grep  grep<cr>
-autocmd FileType unite call s:unite_settings()
-
-function! s:unite_settings()
-  let b:SuperTabDisabled=1
-  imap <buffer> <C-j>   <Plug>(unite_select_next_line)
-  imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
-  imap <silent><buffer><expr> <C-x> unite#do_action('split')
-  imap <silent><buffer><expr> <C-v> unite#do_action('vsplit')
-  imap <silent><buffer><expr> <C-t> unite#do_action('tabopen')
-  nmap <buffer> <ESC> <Plug>(unite_exit)
-  nmap <buffer> <C-c> <Plug>(unite_exit)
-endfunction
-
 
 " Neosnippet
 " Plugin key-mappings.
@@ -216,7 +163,7 @@ let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
 
 " Set minimum syntax keyword length.
-let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplete#sources#syntax#min_keyword_length = 2
 let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 
 " Define dictionary.
@@ -229,13 +176,11 @@ if !exists('g:neocomplete#keyword_patterns')
   let g:neocomplete#keyword_patterns = {}
 endif
 
-" Set async completion.
-let g:monster#completion#rcodetools#backend = "async_rct_complete"
-
 " Use neocomplete.vim
 let g:neocomplete#force_omni_input_patterns = {'ruby' : '[^. *\t]\.\|\h\w*::'}
 
 let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+
 " Search from neocomplete, omni candidates, vim keywords.
 let g:neocomplete#fallback_mappings = ["\<C-x>\<C-o>", "\<C-x>\<C-n>"]
 
@@ -245,7 +190,7 @@ inoremap <expr><C-l>     neocomplete#complete_common_string()
 
 " Recommended key-mappings.
 " <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+inoremap <CR> <C-r>=<SID>my_cr_function()<CR>
 function! s:my_cr_function()
   " For no inserting <CR> key.
   return pumvisible() ? neocomplete#close_popup() : "\<CR>"
@@ -256,11 +201,6 @@ inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 inoremap <expr><C-y>  neocomplete#close_popup()
 inoremap <expr><C-e>  neocomplete#cancel_popup()
-
-" Ruby completions
-let g:rubycomplete_buffer_loading = 1
-let g:rubycomplete_classes_in_global = 1
-let g:rubycomplete_rails = 1
 
 " reselect blocks after indenting/dedenting
 vnoremap < <gv
@@ -292,11 +232,11 @@ set diffopt+=vertical
 
 " Fugitive show on github mapping
 nnoremap <leader>gb :<c-r>=line('.')<cr>Gbrowse<cr>
-vnoremap <leader>gb :Gbrowse<cr>
 nnoremap <leader>gs :Gstatus<cr>
-nnoremap <leader>gp :Gpush<cr>
 nnoremap <leader>gd :Gdiff<cr>
 
+" Rvm integration
+set shell=/bin/sh
 
 " Syntastic settings
 let g:syntastic_auto_loc_list = 0
@@ -305,7 +245,6 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_aggregate_errors = 1
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_ruby_checkers = ['mri', 'rubocop']
-let g:syntastic_ruby_rubocop_args = "-D -c ~/.rubocop.yml"
 
 " airline settings
 let g:airline#extensions#tabline#enabled = 1
@@ -321,10 +260,10 @@ let g:vroom_use_vimux = 1
 let g:vroom_write_all = 1
 let g:vroom_map_keys = 0
 let g:vroom_use_spring = 1
-let g:vroom_use_binstubs = 1
+let g:vroom_use_binstubs = 0
 
-map  <leader>t :VroomRunTestFile<cr>
-map  <leader>T :VroomRunNearestTest<cr>
+map  <leader>a :VroomRunTestFile<cr>
+map  <leader>t :VroomRunNearestTest<cr>
 map  <leader>l :VroomRunLastTest<cr>
 
 " Vimux
@@ -342,3 +281,16 @@ cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
 cnoremap <C-b> <Left>
 cnoremap <C-f> <Right>
+
+" JSX
+let javascript_enable_domhtmlcss=1
+
+set rtp+=/usr/local/Cellar/fzf/HEAD
+
+map <leader><enter> :FZF<cr>
+
+if executable('ag')
+  set grepprg=ag\ --nogroup\ --nocolor
+endif
+
+nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>

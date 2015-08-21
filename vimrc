@@ -100,7 +100,6 @@ set cursorline
 
 " Improve vim's scrolling speed
 set ttyfast
-set ttyscroll=3
 
 " Syntax coloring lines that are too long just slows down the world
 set synmaxcol=1200

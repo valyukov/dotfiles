@@ -241,7 +241,5 @@ if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
 endif
 
-nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
-
 " Enable snipMate compatibility feature.
 let g:neosnippet#enable_snipmate_compatibility = 1

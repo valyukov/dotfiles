@@ -13,3 +13,6 @@ export EDITOR=$VISUAL
 
 # Setup Cask
 export PATH="$HOME/.cask/bin:$PATH"
+
+# Setup golang
+export GOPATH="$HOME/Sources/golang"

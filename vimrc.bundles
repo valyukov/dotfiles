@@ -71,6 +71,8 @@ NeoBundle 'tpope/vim-endwise'
 NeoBundle 'lucapette/vim-textobj-underscore'
 NeoBundle 'christoomey/vim-system-copy'
 NeoBundle 'editorconfig/editorconfig-vim'
+NeoBundle 'tpope/vim-projectionist'
+NeoBundle 'keith/rspec.vim'
 
 call neobundle#end()
 

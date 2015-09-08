@@ -184,7 +184,7 @@ nnoremap <leader>gs :Gstatus<cr>
 nnoremap <leader>gd :Gdiff<cr>
 
 " Rvm integration
-set shell=/bin/sh
+set shell=/usr/local/bin/zsh
 
 " Syntastic settings
 let g:syntastic_auto_loc_list = 0

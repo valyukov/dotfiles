@@ -11,4 +11,5 @@ tmp/**/*
 !tmp/cache/.keep
 **/node_modules/*
 .vimrc
+.exrc
 .config.reek

@@ -11,13 +11,13 @@ Style/MultilineOperationIndentation:
   EnforcedStyle: indented
 
 Style/IfUnlessModifier:
-  MaxLineLength: 120
+  MaxLineLength: 110
 
 Style/WhileUntilModifier:
-  MaxLineLength: 120
+  MaxLineLength: 110
 
 Metrics/LineLength:
-  Max: 120
+  Max: 110
 
 Metrics/ClassLength:
   CountComments: false

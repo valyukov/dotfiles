@@ -186,14 +186,6 @@ nnoremap <leader>gd :Gdiff<cr>
 " Rvm integration
 set shell=/usr/local/bin/zsh
 
-" Syntastic settings
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
-let g:syntastic_aggregate_errors = 1
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_ruby_checkers = ['mri', 'rubocop']
-
 " airline settings
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'

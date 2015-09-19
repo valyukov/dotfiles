@@ -235,3 +235,7 @@ endif
 
 " Enable snipMate compatibility feature.
 let g:neosnippet#enable_snipmate_compatibility = 1
+
+" Tagbar
+nmap <leader>m :TagbarToggle<cr>
+let g:tagbar_left=1

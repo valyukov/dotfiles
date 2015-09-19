@@ -35,6 +35,7 @@ NeoBundle 'mtscout6/vim-cjsx'
 " Navigation
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'junegunn/fzf'
+NeoBundle 'majutsushi/tagbar'
 
 " Shell
 NeoBundle 'pbrisbin/vim-mkdir'

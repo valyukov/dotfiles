@@ -32,6 +32,10 @@ set number                " Show number on current line
 set exrc                  " Enable project specific vimrc files
 set secure                " Disable unsafe commands for proejct specific files
 
+" Terminal title
+set title
+autocmd BufEnter * let &titlestring = "vim (" . expand("%:t") . ")"
+
 " Idention
 filetype plugin indent on
 
@@ -127,29 +131,6 @@ set tagbsearch " use binary searching for tags
 " Text-Object
 runtime macros/matchit.vim
 
-" Neosnippet
-" Plugin key-mappings.
-imap <C-k> <Plug>(neosnippet_expand_or_jump)
-smap <C-k> <Plug>(neosnippet_expand_or_jump)
-xmap <C-k> <Plug>(neosnippet_expand_target)
-
-" SuperTab like snippets behavior.
-imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-      \"\<Plug>(neosnippet_expand_or_jump)"
-      \: pumvisible() ? "\<C-n>" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-      \"\<Plug>(neosnippet_expand_or_jump)"
-      \: "\<TAB>"
-
-" Scope aliases
-let g:neosnippet#scope_aliases = {}
-let g:neosnippet#scope_aliases['ruby'] = 'ruby,ruby-rails,rails'
-
-" For snippet_complete marker.
-if has('conceal')
-  set conceallevel=2 concealcursor=i
-endif
-
 " reselect blocks after indenting/dedenting
 vnoremap < <gv
 vnoremap > >gv
@@ -232,9 +213,6 @@ map <leader><enter> :FZF<cr>
 if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
 endif
-
-" Enable snipMate compatibility feature.
-let g:neosnippet#enable_snipmate_compatibility = 1
 
 " Tagbar
 nmap <leader>m :TagbarToggle<cr>

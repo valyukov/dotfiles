@@ -7,6 +7,9 @@ if has('vim_starting')
   set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
 
+" YouCompleteMe compilation take a looong time
+let g:neobundle#install_process_timeout = 1500
+
 call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
@@ -64,6 +67,8 @@ NeoBundle 'tpope/vim-endwise'
 NeoBundle 'lucapette/vim-textobj-underscore'
 NeoBundle 'christoomey/vim-system-copy'
 NeoBundle 'tpope/vim-projectionist'
+NeoBundle 'SirVer/ultisnips'
+NeoBundle 'honza/vim-snippets'
 
 call neobundle#end()
 

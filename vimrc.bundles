@@ -23,6 +23,11 @@ NeoBundle 'jgdavey/vim-blockle'
 NeoBundle 'skalnik/vim-vroom'
 NeoBundle 'tpope/vim-rvm'
 NeoBundle 'keith/rspec.vim'
+NeoBundle 'kassio/neoterm'
+
+" Elixir support
+NeoBundle 'elixir-lang/vim-elixir'
+NeoBundle 'mattreduce/vim-mix'
 
 " Go support
 NeoBundle 'fatih/vim-go'

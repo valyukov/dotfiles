@@ -1,13 +1,11 @@
-" Use Vim settings, rather then Vi settings. This setting must be as early as
-" possible, as it has side effects.
+if filereadable(expand("~/.vimrc.bundles"))
+  source ~/.vimrc.bundles
+endif
+
 set nocompatible
 
 " Leader
 let mapleader = " "
-
-if filereadable(expand("~/.vimrc.bundles"))
-  source ~/.vimrc.bundles
-endif
 
 set hidden
 set laststatus=2          " last window always has a statusline

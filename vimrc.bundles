@@ -1,83 +1,64 @@
-if has('vim_starting')
-  if &compatible
-    set nocompatible " Be iMproved
-  endif
-
-  " Required:
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
-endif
-
-" YouCompleteMe compilation take a looong time
-let g:neobundle#install_process_timeout = 1500
-
-call neobundle#begin(expand('~/.vim/bundle/'))
-NeoBundleFetch 'Shougo/neobundle.vim'
+call plug#begin('~/.vim/plugged')
 
 " Ruby Support
-NeoBundle 'vim-ruby/vim-ruby'
-NeoBundle 'tpope/vim-rails'
-NeoBundle 'tpope/vim-rake'
-NeoBundle 'tpope/vim-bundler'
-NeoBundle 'nelstrom/vim-textobj-rubyblock'
-NeoBundle 'jgdavey/vim-blockle'
-NeoBundle 'skalnik/vim-vroom'
-NeoBundle 'tpope/vim-rvm'
-NeoBundle 'keith/rspec.vim'
-NeoBundle 'kassio/neoterm'
+Plug 'vim-ruby/vim-ruby'
+Plug 'tpope/vim-rails'
+Plug 'tpope/vim-rake'
+Plug 'tpope/vim-bundler'
+Plug 'nelstrom/vim-textobj-rubyblock'
+Plug 'jgdavey/vim-blockle'
+Plug 'skalnik/vim-vroom'
+Plug 'tpope/vim-rvm'
+Plug 'keith/rspec.vim'
+Plug 'kassio/neoterm'
 
 " Elixir support
-NeoBundle 'elixir-lang/vim-elixir'
-NeoBundle 'mattreduce/vim-mix'
+Plug 'elixir-lang/vim-elixir'
+Plug 'mattreduce/vim-mix'
 
 " Go support
-NeoBundle 'fatih/vim-go'
+Plug 'fatih/vim-go'
 
 " Frontned
-NeoBundle 'pangloss/vim-javascript'
-NeoBundle 'mxw/vim-jsx'
-NeoBundle 'isRuslan/vim-es6'
-NeoBundle 'wavded/vim-stylus'
-NeoBundle 'kchmck/vim-coffee-script'
-NeoBundle 'mtscout6/vim-cjsx'
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
+Plug 'isRuslan/vim-es6'
+Plug 'wavded/vim-stylus'
+Plug 'kchmck/vim-coffee-script'
+Plug 'mtscout6/vim-cjsx'
 
 " Navigation
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'junegunn/fzf'
-NeoBundle 'majutsushi/tagbar'
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
+Plug 'majutsushi/tagbar'
 
 " Shell
-NeoBundle 'pbrisbin/vim-mkdir'
-NeoBundle 'tpope/vim-eunuch'
-NeoBundle 'benmills/vimux'
-NeoBundle 'tpope/vim-dispatch'
+Plug 'pbrisbin/vim-mkdir'
+Plug 'tpope/vim-eunuch'
+Plug 'benmills/vimux'
+Plug 'tpope/vim-dispatch'
 
 " GUI
-NeoBundle 'bling/vim-airline'
-NeoBundle 'jnurmine/Zenburn'
+Plug 'bling/vim-airline'
+Plug 'jnurmine/Zenburn'
 
 " Git support
-NeoBundle 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 
 " Code manipulation
-NeoBundle 'nathanaelkane/vim-indent-guides'
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'tomtom/tcomment_vim'
-NeoBundle 'kana/vim-textobj-user'
-NeoBundle 'vim-scripts/ctags.vim'
-NeoBundle 'vim-scripts/matchit.zip'
-NeoBundle 'benekastah/neomake'
-NeoBundle 'AndrewRadev/splitjoin.vim'
-NeoBundle 'wellle/targets.vim'
-NeoBundle 'tpope/vim-endwise'
-NeoBundle 'lucapette/vim-textobj-underscore'
-NeoBundle 'christoomey/vim-system-copy'
-NeoBundle 'tpope/vim-projectionist'
-NeoBundle 'SirVer/ultisnips'
-NeoBundle 'honza/vim-snippets'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'tpope/vim-surround'
+Plug 'tomtom/tcomment_vim'
+Plug 'kana/vim-textobj-user'
+Plug 'vim-scripts/ctags.vim'
+Plug 'vim-scripts/matchit.zip'
+Plug 'benekastah/neomake'
+Plug 'AndrewRadev/splitjoin.vim'
+Plug 'wellle/targets.vim'
+Plug 'tpope/vim-endwise'
+Plug 'lucapette/vim-textobj-underscore'
+Plug 'christoomey/vim-system-copy'
+Plug 'tpope/vim-projectionist'
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
-call neobundle#end()
-
-NeoBundleCheck
-
-" Required:
-filetype plugin indent on
+call plug#end()

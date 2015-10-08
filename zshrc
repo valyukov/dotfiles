@@ -58,9 +58,6 @@ bindkey -s "^T" "^[Isudo ^[A" # "t" for "toughguy"
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-export NVM_DIR=~/.nvm
-source $(brew --prefix nvm)/nvm.sh
-
 case $TERM in
   xterm*)
     precmd () {print -Pn "\e]0;%n@%m: %~\a"}

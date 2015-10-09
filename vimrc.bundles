@@ -1,35 +1,34 @@
 call plug#begin('~/.vim/plugged')
 
 " Ruby Support
-Plug 'vim-ruby/vim-ruby'
+Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-rake'
 Plug 'tpope/vim-bundler'
-Plug 'nelstrom/vim-textobj-rubyblock'
-Plug 'jgdavey/vim-blockle'
+Plug 'nelstrom/vim-textobj-rubyblock', { 'for': 'ruby' }
+Plug 'jgdavey/vim-blockle', { 'for': 'ruby' }
 Plug 'skalnik/vim-vroom'
 Plug 'tpope/vim-rvm'
-Plug 'keith/rspec.vim'
-Plug 'kassio/neoterm'
+Plug 'keith/rspec.vim', { 'for': 'ruby' }
 
 " Elixir support
 Plug 'elixir-lang/vim-elixir'
 Plug 'mattreduce/vim-mix'
 
 " Go support
-Plug 'fatih/vim-go'
+Plug 'fatih/vim-go', { 'for': 'go' }
 
 " Frontned
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
-Plug 'isRuslan/vim-es6'
-Plug 'wavded/vim-stylus'
-Plug 'kchmck/vim-coffee-script'
-Plug 'mtscout6/vim-cjsx'
+Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+Plug 'mxw/vim-jsx', { 'for': 'javascript' }
+Plug 'isRuslan/vim-es6', { 'for': 'javascript' }
+Plug 'wavded/vim-stylus', { 'for': 'stylus' }
+Plug 'kchmck/vim-coffee-script', { 'for': 'coffeescript' }
+Plug 'mtscout6/vim-cjsx', { 'for': 'javascript' }
 
 " Navigation
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
+Plug 'junegunn/fzf', { 'on': 'FZF' }
 Plug 'majutsushi/tagbar'
 
 " Shell
@@ -37,6 +36,7 @@ Plug 'pbrisbin/vim-mkdir'
 Plug 'tpope/vim-eunuch'
 Plug 'benmills/vimux'
 Plug 'tpope/vim-dispatch'
+Plug 'kassio/neoterm'
 
 " GUI
 Plug 'bling/vim-airline'

@@ -11,8 +11,5 @@ export PATH="$PATH:$HOME/.rvm/bin"
 export VISUAL=/usr/local/bin/nvim
 export EDITOR=$VISUAL
 
-# Setup Cask
-export PATH="$HOME/.cask/bin:$PATH"
-
 # Setup golang
-export GOPATH="$HOME/Sources/golang"
+export GOPATH="$HOME/Development/golang"

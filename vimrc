@@ -29,6 +29,7 @@ set relativenumber        " Relative number
 set number                " Show number on current line
 set exrc                  " Enable project specific vimrc files
 set secure                " Disable unsafe commands for proejct specific files
+set mouse=""              " Disable mouse
 
 " Terminal title
 set title
@@ -163,7 +164,7 @@ nnoremap <leader>gs :Gstatus<cr>
 nnoremap <leader>gd :Gdiff<cr>
 
 " Rvm integration
-set shell=/usr/local/bin/zsh
+set shell=/bin/zsh
 
 " airline settings
 let g:airline#extensions#tabline#enabled = 1
@@ -178,7 +179,7 @@ let g:vroom_use_colors = 1
 let g:vroom_use_vimux = 1
 let g:vroom_write_all = 1
 let g:vroom_map_keys = 0
-let g:vroom_use_spring = 1
+let g:vroom_use_spring = 0
 let g:vroom_use_binstubs = 0
 
 map  <leader>a :VroomRunTestFile<cr>

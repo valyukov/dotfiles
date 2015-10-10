@@ -7,7 +7,7 @@ Plug 'tpope/vim-rake'
 Plug 'tpope/vim-bundler'
 Plug 'nelstrom/vim-textobj-rubyblock', { 'for': 'ruby' }
 Plug 'jgdavey/vim-blockle', { 'for': 'ruby' }
-Plug 'skalnik/vim-vroom'
+Plug 'skalnik/vim-vroom', { 'for': 'ruby' }
 Plug 'tpope/vim-rvm'
 Plug 'keith/rspec.vim', { 'for': 'ruby' }
 
@@ -36,6 +36,7 @@ Plug 'pbrisbin/vim-mkdir'
 Plug 'tpope/vim-eunuch'
 Plug 'benmills/vimux'
 Plug 'tpope/vim-dispatch'
+Plug 'radenling/vim-dispatch-neovim'
 Plug 'kassio/neoterm'
 
 " GUI

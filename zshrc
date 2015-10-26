@@ -63,3 +63,6 @@ case $TERM in
     precmd () {print -Pn "\e]0;%n@%m: %~\a"}
     ;;
 esac
+
+# Local properties
+[ -f ~/.zshrc.local ] && source ~/.zshrc.local

@@ -5,19 +5,22 @@ Style/Encoding:
   Enabled: false
 
 Style/StringLiterals:
-  EnforcedStyle: double_quotes
+  Enabled: false
+
+Style/DotPosition:
+  EnforcedStyle: trailing
 
 Style/MultilineOperationIndentation:
   EnforcedStyle: indented
 
 Style/IfUnlessModifier:
-  MaxLineLength: 110
+  MaxLineLength: 120
 
 Style/WhileUntilModifier:
-  MaxLineLength: 110
+  MaxLineLength: 120
 
 Metrics/LineLength:
-  Max: 110
+  Max: 120
 
 Metrics/ClassLength:
   CountComments: false

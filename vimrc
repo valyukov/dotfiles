@@ -2,6 +2,10 @@ if filereadable(expand("~/.vimrc.bundles"))
   source ~/.vimrc.bundles
 endif
 
+if has('nvim')
+  autocmd! BufWritePost * Neomake
+endif
+
 set nocompatible
 
 " Leader
@@ -16,7 +20,6 @@ set backspace=2           " Backspace deletes like most programs in insert mode
 set nobackup
 set nowritebackup
 set noswapfile
-set history=50
 set ruler                 " show the cursor position all the time
 set showcmd               " display incomplete commands
 set incsearch             " do incremental searching
@@ -28,7 +31,6 @@ set fileignorecase        " Case-insensitive cmd autocomplete
 set relativenumber        " Relative number
 set number                " Show number on current line
 set exrc                  " Enable project specific vimrc files
-set secure                " Disable unsafe commands for proejct specific files
 set mouse=""              " Disable mouse
 
 " Terminal title
@@ -53,8 +55,8 @@ augroup vimrcEx
   autocmd BufRead,BufNewFile Appraisals set filetype=ruby
 
   " Automatically wrap at 72 characters and spell check git commit messages
-  autocmd FileType gitcommit setlocal textwidth=120
-  autocmd FileType gitcommit setlocal spell spelllang=ru_ru,en_us
+  autocmd FileType gitcommit setlocal textwidth=90
+  autocmd FileType gitcommit setlocal spell spelllang=ru_yo,en_us
 
   " Ruby idention
   autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
@@ -64,13 +66,13 @@ augroup vimrcEx
   autocmd BufNewFile,BufRead *.jbuilder set filetype=ruby
   autocmd BufNewFile,BufRead *.rabl     set filetype=ruby
   autocmd User Rails                    silent! Rlcd
-  autocmd User Rails                    silent! Rvm
 
   " Vim idention
   autocmd FileType vim setlocal ts=2 sts=2 sw=2
+  autocmd FileType coffee setlocal syntax=jasmine
 
   " Yaml spellchecking
-  autocmd FileType yaml setlocal spell spelllang=ru_ru,en_us
+  autocmd FileType yaml setlocal spell spelllang=ru_yo,en_us
 
   " Open help at vertical split
   autocmd BufRead,BufEnter */doc/* wincmd L
@@ -97,12 +99,10 @@ set colorcolumn=+1
 " GUI
 set t_Co=256              " enable 256-color mode.
 syntax enable             " enable syntax highlighting (previously syntax on).
-colorscheme zenburn       " set colorscheme
+colorscheme solarized     " set colorscheme
+set background=light
 set showtabline=2
 set cursorline
-
-" Improve vim's scrolling speed
-set ttyfast
 
 " Syntax coloring lines that are too long just slows down the world
 set synmaxcol=1200
@@ -113,9 +113,6 @@ set list listchars=tab:»·,trail:·,nbsp:·,extends:❯,precedes:❮
 " Open new split panes to right and bottom, which feels more natural
 set splitbelow
 set splitright
-
-" Auto-reload buffers when files are changed on disk
-set autoread
 
 " Open all folds by default
 set nofoldenable
@@ -159,40 +156,20 @@ inoremap <s-tab> <c-p>
 set diffopt+=vertical
 
 " Fugitive show on github mapping
-nnoremap <leader>gb :<c-r>=line('.')<cr>Gbrowse<cr>
 nnoremap <leader>gs :Gstatus<cr>
 nnoremap <leader>gd :Gdiff<cr>
-
-" Rvm integration
-set shell=/bin/zsh
+nnoremap <leader>gb :Gblame<cr>
 
 " airline settings
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#formatter = 'unique_tail'
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 let g:airline#extensions#tabline#show_close_button = 0
-
-" delete buffer
-nnoremap <C-c> :bnext\|bdelete #<cr>
-
-" Setup vroom
-let g:vroom_use_colors = 1
-let g:vroom_use_vimux = 1
-let g:vroom_write_all = 1
-let g:vroom_map_keys = 0
-let g:vroom_use_spring = 0
-let g:vroom_use_binstubs = 0
-
-map  <leader>a :VroomRunTestFile<cr>
-map  <leader>t :VroomRunNearestTest<cr>
-map  <leader>l :VroomRunLastTest<cr>
-
-" Vimux
-map <leader>c :VimuxCloseRunner<cr>
-map <leader>i :VimuxInspectRunner<cr>
-map <leader>z :VimuxZoomRunner<cr>
+let g:airline#extensions#tabline#exclude_preview = 1
+let g:airline#extensions#syntastic#enabled = 0
+let g:airline#extensions#tagbar#enabled = 0
 
 " NerdTree
-map <leader>n :NERDTreeToggle<cr>
+map <leader>n :NERDTreeToggle %<cr>
 
 " Commandline navigation mapping
 cnoremap <C-a> <Home>
@@ -202,9 +179,6 @@ cnoremap <C-n> <Down>
 cnoremap <C-b> <Left>
 cnoremap <C-f> <Right>
 
-" JSX
-let javascript_enable_domhtmlcss=1
-
 set rtp+=/usr/local/Cellar/fzf/HEAD
 
 map <leader><enter> :FZF<cr>
@@ -213,6 +187,26 @@ if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
 endif
 
+nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+
+" Erlang
+let g:erlang_highlight_special_atoms = 1
+set runtimepath^=~/.vim/plugged/vim-erlang-runtime
+set runtimepath^=~/.vim/plugged/vim-erlang-tags
+
+" neoterm
+if has('nvim')
+  nnoremap <silent> ,rt :call neoterm#test#run('all')<cr>
+  nnoremap <silent> ,rf :call neoterm#test#run('file')<cr>
+  nnoremap <silent> ,rn :call neoterm#test#run('current')<cr>
+  nnoremap <silent> ,rr :call neoterm#test#rerun()<cr>
+  nnoremap <silent> ,to :Topen<cr>
+  nnoremap <silent> ,th :call neoterm#close()<cr>
+  nnoremap <silent> ,tl :call neoterm#clear()<cr>
+  nnoremap <silent> ,tc :call neoterm#kill()<cr>
+  let g:neoterm_test_status =  { 'running': '♻️', 'success': '✅', 'failed': '⛔️' }
+  let g:airline_section_x = '%{g:neoterm_statusline}  %{airline#util#wrap(airline#parts#filetype(),0)}'
+endif
+
 " Tagbar
-nmap <leader>m :TagbarToggle<cr>
-let g:tagbar_left=1
+map <leader>t :TagbarToggle<cr>

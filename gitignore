@@ -11,5 +11,8 @@ tmp/**/*
 !tmp/cache/.keep
 **/node_modules/*
 .vimrc
+.nvimrc
 .exrc
 .config.reek
+.ruby-version
+.ruby-gemset

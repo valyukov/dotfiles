@@ -1,3 +1,6 @@
+AllCops:
+  DisplayCopNames: true
+
 Style/Documentation:
   Enabled: false
 

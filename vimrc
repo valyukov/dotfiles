@@ -203,3 +203,6 @@ endif
 
 " Tagbar
 map <leader>t :TagbarToggle<cr>
+
+" Deoplete
+let g:deoplete#enable_at_startup = 1

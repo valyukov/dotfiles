@@ -53,6 +53,7 @@ Plug 'tpope/vim-endwise'
 Plug 'lucapette/vim-textobj-underscore'
 Plug 'christoomey/vim-system-copy'
 Plug 'tpope/vim-projectionist'
+Plug 'Shougo/deoplete.nvim'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
 call plug#end()

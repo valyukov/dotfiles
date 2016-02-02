@@ -33,10 +33,6 @@ set number                " Show number on current line
 set exrc                  " Enable project specific vimrc files
 set mouse=""              " Disable mouse
 
-" Terminal title
-set title
-autocmd BufEnter * let &titlestring = "vim (" . expand("%:t") . ")"
-
 " Idention
 filetype plugin indent on
 

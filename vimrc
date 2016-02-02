@@ -194,7 +194,7 @@ if has('nvim')
   nnoremap <silent> ,rn :call neoterm#test#run('current')<cr>
   nnoremap <silent> ,rr :call neoterm#test#rerun()<cr>
   nnoremap <silent> ,to :Topen<cr>
-  nnoremap <silent> ,th :call neoterm#close()<cr>
+  nnoremap <silent> ,th :Tclose<cr>
   nnoremap <silent> ,tl :call neoterm#clear()<cr>
   nnoremap <silent> ,tc :call neoterm#kill()<cr>
   let g:neoterm_test_status =  { 'running': '♻️', 'success': '✅', 'failed': '⛔️' }

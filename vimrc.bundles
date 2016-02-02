@@ -33,7 +33,8 @@ Plug 'tpope/vim-eunuch'
 Plug 'kassio/neoterm'
 
 " GUI
-Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'altercation/vim-colors-solarized'
 
 " Git support

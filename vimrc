@@ -168,9 +168,6 @@ let g:airline#extensions#tabline#exclude_preview = 1
 let g:airline#extensions#syntastic#enabled = 0
 let g:airline#extensions#tagbar#enabled = 0
 
-" NerdTree
-map <leader>n :NERDTreeToggle %<cr>
-
 " Commandline navigation mapping
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>

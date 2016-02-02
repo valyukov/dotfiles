@@ -22,7 +22,7 @@ Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
 Plug 'digitaltoad/vim-jade', { 'for': 'jade' }
 
 " Navigation
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'tpope/vim-vinegar'
 Plug 'majutsushi/tagbar'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'tpope/vim-unimpaired'

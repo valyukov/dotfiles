@@ -27,6 +27,9 @@ Plug 'majutsushi/tagbar'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'tpope/vim-unimpaired'
 
+" DB
+Plug 'vim-scripts/dbext.vim'
+
 " Shell
 Plug 'pbrisbin/vim-mkdir'
 Plug 'tpope/vim-eunuch'
@@ -41,6 +44,7 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'tpope/vim-fugitive'
 
 " Code manipulation
+Plug 'tpope/vim-abolish'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'tpope/vim-surround'
 Plug 'tomtom/tcomment_vim'

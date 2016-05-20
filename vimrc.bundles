@@ -20,6 +20,7 @@ Plug 'vim-erlang/erlang-motions.vim', { 'for': 'erlang' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
 Plug 'digitaltoad/vim-pug'
+Plug 'whatyouhide/vim-textobj-xmlattr'
 
 " Navigation
 Plug 'tpope/vim-vinegar'

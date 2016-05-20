@@ -39,3 +39,7 @@ Metrics/MethodLength:
 
 Metrics/AbcSize:
   Max: 25
+
+Style/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+  IndentationWidth: 2

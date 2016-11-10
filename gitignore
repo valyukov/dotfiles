@@ -14,5 +14,4 @@ tmp/**/*
 .nvimrc
 .exrc
 .config.reek
-.ruby-version
 .ruby-gemset

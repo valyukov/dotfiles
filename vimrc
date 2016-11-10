@@ -172,15 +172,13 @@ cnoremap <C-n> <Down>
 cnoremap <C-b> <Left>
 cnoremap <C-f> <Right>
 
-set rtp+=/usr/local/Cellar/fzf/HEAD
-
-map <leader><enter> :FZF<cr>
+nnoremap <silent> <Leader><enter> :call fzf#run({ 'source': 'ag -g ""', 'sink': 'e', 'window': 'rightbelow new'}) <CR>
 
 if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
 endif
 
-nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+nnoremap <C-k> :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
 " Erlang
 let g:erlang_highlight_special_atoms = 1
@@ -190,19 +188,29 @@ set runtimepath^=~/.vim/plugged/vim-erlang-tags
 " neoterm
 if has('nvim')
   nnoremap <silent> ,rt :call neoterm#test#run('all')<cr>
+  nnoremap <silent> <leader>rt :call neoterm#test#run('all')<cr>
   nnoremap <silent> ,rf :call neoterm#test#run('file')<cr>
+  nnoremap <silent> <leader>rf :call neoterm#test#run('file')<cr>
   nnoremap <silent> ,rn :call neoterm#test#run('current')<cr>
+  nnoremap <silent> <leader>rn :call neoterm#test#run('current')<cr>
   nnoremap <silent> ,rr :call neoterm#test#rerun()<cr>
+  nnoremap <silent> <leader>rr :call neoterm#test#rerun()<cr>
   nnoremap <silent> ,to :Topen<cr>
+  nnoremap <silent> <leader>to :Topen<cr>
   nnoremap <silent> ,th :Tclose<cr>
+  nnoremap <silent> <leader>th :Tclose<cr>
   nnoremap <silent> ,tl :call neoterm#clear()<cr>
-  nnoremap <silent> ,tc :call neoterm#kill()<cr>
+  nnoremap <silent> <leader>tl :call neoterm#clear()<cr>
+  nnoremap <silent> ,tc :calt neoterm#kill()<cr>
+  nnoremap <silent> <leader>tc :call neoterm#kill()<cr>
   let g:neoterm_test_status =  { 'running': '♻️', 'success': '✅', 'failed': '⛔️' }
   let g:airline_section_x = '%{g:neoterm_statusline}  %{airline#util#wrap(airline#parts#filetype(),0)}'
 endif
 
-" Tagbar
-map <leader>t :TagbarToggle<cr>
-
 " Deoplete
 let g:deoplete#enable_at_startup = 1
+" Enable credo and mix compilefor elixir files
+let g:neomake_elixir_enabled_makers = ['elixir', 'credo']
+
+let g:neomake_elixir_elixir_exe="mix"
+let g:neomake_elixir_elixir_args=['compile ', '%:p']

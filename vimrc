@@ -10,7 +10,7 @@ set nocompatible
 
 " Leader
 let mapleader = " "
-
+set inccommand=nosplit
 set hidden
 set laststatus=2          " last window always has a statusline
 set nohlsearch            " Don't continue to highlight searched phrases.

@@ -15,3 +15,4 @@ tmp/**/*
 .exrc
 .config.reek
 .ruby-gemset
+.projections.json

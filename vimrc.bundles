@@ -7,7 +7,8 @@ Plug 'tpope/vim-bundler'
 Plug 'nelstrom/vim-textobj-rubyblock', { 'for': 'ruby' }
 Plug 'jgdavey/vim-blockle', { 'for': 'ruby' }
 Plug 'tpope/vim-rvm'
-Plug 'keith/rspec.vim', { 'for': 'ruby' }
+Plug 'keith/rspec.vim'
+Plug 'fishbullet/deoplete-ruby', { 'for': 'ruby' }
 
 " Erlang support
 Plug 'vim-erlang/vim-erlang-runtime', { 'for': 'erlang' }
@@ -16,20 +17,19 @@ Plug 'vim-erlang/vim-erlang-omnicomplete', { 'for': 'erlang' }
 Plug 'vim-erlang/vim-erlang-tags', { 'for': 'erlang' }
 Plug 'vim-erlang/erlang-motions.vim', { 'for': 'erlang' }
 
+" Elixir support
+Plug 'elixir-lang/vim-elixir'
+Plug 'thinca/vim-ref'
+Plug 'slashmili/alchemist.vim'
+Plug 'powerman/vim-plugin-AnsiEsc'
+
 " Frontned
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
-Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
-Plug 'digitaltoad/vim-pug'
-Plug 'whatyouhide/vim-textobj-xmlattr'
 
 " Navigation
 Plug 'tpope/vim-vinegar'
-Plug 'majutsushi/tagbar'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'tpope/vim-unimpaired'
-
-" DB
-Plug 'vim-scripts/dbext.vim'
 
 " Shell
 Plug 'pbrisbin/vim-mkdir'
@@ -45,7 +45,7 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'tpope/vim-fugitive'
 
 " Code manipulation
-Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-projectionist'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'tpope/vim-surround'
 Plug 'tomtom/tcomment_vim'
@@ -56,10 +56,10 @@ Plug 'benekastah/neomake'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'wellle/targets.vim'
 Plug 'tpope/vim-endwise'
-Plug 'lucapette/vim-textobj-underscore'
 Plug 'christoomey/vim-system-copy'
 Plug 'tpope/vim-projectionist'
-Plug 'Shougo/deoplete.nvim'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+Plug 'janko-m/vim-test'
 
 call plug#end()

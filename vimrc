@@ -60,12 +60,7 @@ augroup vimrcEx
 
   " vim-ruby completions
   autocmd BufNewFile,BufRead *.jbuilder set filetype=ruby
-  autocmd BufNewFile,BufRead *.rabl     set filetype=ruby
   autocmd User Rails                    silent! Rlcd
-
-  " Vim idention
-  autocmd FileType vim setlocal ts=2 sts=2 sw=2
-  autocmd FileType coffee setlocal syntax=jasmine
 
   " Yaml spellchecking
   autocmd FileType yaml setlocal spell spelllang=ru_yo,en_us
@@ -73,9 +68,10 @@ augroup vimrcEx
   " Open help at vertical split
   autocmd BufRead,BufEnter */doc/* wincmd L
 
-  " Relative numeration only on focused window
-  autocmd FocusLost *   set number
-  autocmd FocusGained * set relativenumber
+  autocmd TermOpen * setlocal statusline=%{b:term_title}
+  autocmd TermOpen * setlocal number
+  autocmd TermOpen * setlocal relativenumber
+  autocmd BufEnter term://* stopinsert
 augroup END
 
 
@@ -186,15 +182,13 @@ let g:erlang_highlight_special_atoms = 1
 set runtimepath^=~/.vim/plugged/vim-erlang-runtime
 set runtimepath^=~/.vim/plugged/vim-erlang-tags
 
-" neoterm
-if has('nvim')
-  nnoremap <silent> ,rt :TestSuite<cr>
-  nnoremap <silent> ,rf :TestFile<cr>
-  nnoremap <silent> ,rn :TestNearest<cr>
-  nnoremap <silent> ,rr ::TestLast<cr>
+" VimTest
+nnoremap <silent> ,rt :TestSuite<cr>
+nnoremap <silent> ,rf :TestFile<cr>
+nnoremap <silent> ,rn :TestNearest<cr>
+nnoremap <silent> ,rr ::TestLast<cr>
 
-  let test#strategy = "neovim"
-endif
+let test#strategy = "neovim"
 
 " Deoplete
 let g:deoplete#enable_at_startup = 1

@@ -1,4 +1,4 @@
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.config/nvim')
 
 " Ruby Support
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
@@ -25,6 +25,7 @@ Plug 'powerman/vim-plugin-AnsiEsc'
 
 " Frontned
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+Plug 'diepm/vim-rest-console'
 
 " Navigation
 Plug 'tpope/vim-vinegar'
